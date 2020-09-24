@@ -6,7 +6,7 @@ export class Mode {
     button: HTMLElement;
     storedTheme: Theme;
     systemPreference: Theme;
-    availableThemes: Theme[];
+    availableThemes: readonly Theme[];
 
     constructor() {
         this.availableThemes = ['light', 'dark'];
