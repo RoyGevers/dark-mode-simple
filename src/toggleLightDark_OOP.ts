@@ -1,4 +1,8 @@
-type Theme = 'dark' | 'light';
+//type Theme = 'dark' | 'light';
+const enum Theme {
+    DARK = 'dark',
+    LIGHT = 'light'
+}
 
 export class Mode {
     startTheme: Theme;
@@ -9,9 +13,9 @@ export class Mode {
     availableThemes: readonly Theme[];
 
     constructor() {
-        this.availableThemes = ['light', 'dark'];
+        this.availableThemes = [Theme.LIGHT, Theme.DARK];
         this.storedTheme = localStorage.getItem('theme') as Theme;
-        this.systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
+        this.systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.DARK : Theme.LIGHT;
         this.startTheme = this.storedTheme || this.systemPreference;
         this.oppositeTheme = this.availableThemes.find(t => t !== this.startTheme) as Theme;
         this.button = document.getElementById('mode-switchers')!;
@@ -24,7 +28,7 @@ export class Mode {
         });
 
         localStorage.setItem('theme', after as Theme);
-        this.button.style.transform = (before === 'light') ? 'rotate(90deg)' : 'rotate(0deg)';
+        this.button.style.transform = (before === Theme.LIGHT) ? 'rotate(90deg)' : 'rotate(0deg)';
     }
 
     toggleOnLoad() {

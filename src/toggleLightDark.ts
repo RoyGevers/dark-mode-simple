@@ -1,9 +1,13 @@
 // Types
-type Theme = 'dark' | 'light';
+//type Theme = 'dark' | 'light';
+const enum Theme {
+    DARK = 'dark',
+    LIGHT = 'light'
+}
 
 // Global vars
 const modeSwitchers = document.getElementById('mode-switchers')!;
-const themes: Theme[] = ['dark', 'light'];
+const themes: Theme[] = [Theme.DARK, Theme.LIGHT];
 
 // Functions
 const changeClassList = (future: Theme, past: Theme): void => {
@@ -13,12 +17,12 @@ const changeClassList = (future: Theme, past: Theme): void => {
     });
 
     localStorage.setItem('theme', future);
-    modeSwitchers.style.transform = (future === 'light') ? 'rotate(0deg)' : 'rotate(90deg)';
+    modeSwitchers.style.transform = (future === Theme.LIGHT) ? 'rotate(0deg)' : 'rotate(90deg)';
 };
 
 const getStartTheme = (): Theme => {
     const storage = localStorage.getItem('theme') as Theme;
-    const sysPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? 'dark' : 'light';
+    const sysPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.DARK : Theme.LIGHT;
 
     // Each visit, we get the theme from local storage. If nothing is stored (e.g., first visit), we use the system preference
     if (!storage) {

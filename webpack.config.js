@@ -8,6 +8,10 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "app.bundle.js",
   },
+  devServer: {
+    contentBase: path.join(__dirname, 'dist'),
+    port: 9000
+  },
   module: {
     rules: [
       {
@@ -24,6 +28,7 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".js", ".tsx"],
   },
+  devtool: 'inline-source-map',
   plugins: [
     new HtmlWebpackPlugin({
       hash: true,
