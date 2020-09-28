@@ -1,22 +1,4 @@
 
-/* 
-Questions:
-
-1. Wat is het standpunt tav semicolon gebruik?
-
-2.
-Door het Singleton patroon werkt het initialiseren van startTheme vanuit localStorage (of systeeminstellingen) in de constructor niet meer. 
-Na één keer klikken blijft de waarde van startTheme en dus oppositeTheme gelijk. 
-
-Hiervoor zijn (tenminste) twee oplossingen. Optie 1:
-In de toggle() method geen parameters gebruiken, maar steeds storedTheme steeds opnieuw uit localStorage halen en vanuit daar startTheme en oppositeTheme vullen. 
-niet erg DRY, dus in eerste instantie ben ik voor optie 2 gegaan:
-In de toggleOnClick() method bij elke iteratie startTheme en OppositeTheme omdraaien. (Hiervoor returnt toggle() nu de thema's steeds)
-
-Welke optie is beter? Of is er nog een betere optie?
-
-*/
-
 
 // Types
 const enum Theme {

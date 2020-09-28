@@ -13,12 +13,10 @@ import { Mode } from "./toggleLightDark_OOP"
 
 
 window.addEventListener('load', (e) => {
-  let mode = Mode.getInstance();
-  mode.toggleOnLoad();
+  Mode.getInstance().toggleOnLoad();
 
   document.getElementById('mode-switchers')!.addEventListener('click', (e) => {
-    mode = Mode.getInstance();
-    mode.toggleOnClick();
+    Mode.getInstance().toggleOnClick();
   });
 
 });
