@@ -16,7 +16,7 @@ window.addEventListener('load', (e) => {
   Mode.getInstance().toggleOnLoad();
 
   document.getElementById('mode-switchers')!.addEventListener('click', (e) => {
-    Mode.getInstance().toggleOnClick();
+    Mode.getInstance().toggleOnClick(document.getElementById('mode-switchers')!);
   });
 
 });
