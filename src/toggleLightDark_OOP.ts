@@ -1,7 +1,10 @@
 
 /* 
-Question:
+Questions:
 
+1. Wat is het standpunt tav semicolon gebruik?
+
+2.
 Door het Singleton patroon werkt het initialiseren van startTheme vanuit localStorage (of systeeminstellingen) in de constructor niet meer. 
 Na één keer klikken blijft de waarde van startTheme en dus oppositeTheme gelijk. 
 
@@ -24,7 +27,7 @@ const enum Theme {
 type Toggle = (before: Theme, after: Theme) => Theme[];
 
 
-// Class
+// Classes
 export class Mode {
     startTheme: Theme;
     oppositeTheme: Theme;

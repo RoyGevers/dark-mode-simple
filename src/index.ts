@@ -21,6 +21,4 @@ window.addEventListener('load', (e) => {
     mode.toggleOnClick();
   });
 
-
-
 });
