@@ -4,14 +4,13 @@ const enum Theme {
     LIGHT = 'light'
 }
 
-type Toggle = (before: Theme, after: Theme, el?: HTMLElement) => Theme[];
+type Toggle = (before: Theme, after: Theme, el: HTMLElement) => Theme[];
 
 
 // Classes
 export class Mode {
     startTheme: Theme;
     oppositeTheme: Theme;
-
     storedTheme: Theme;
     systemPreference: Theme;
     availableThemes: readonly Theme[];
@@ -34,23 +33,20 @@ export class Mode {
         return Mode.instance;
     }
 
-    private toggle: Toggle = (before, after, button?) => {
+    private toggle: Toggle = (before, after, button) => {
         document.querySelectorAll(`[class*='${before}']`).forEach((elem) => {
             const getMode = [...elem.classList].find((c) => c.includes(before))!;
             elem.classList.replace(getMode, getMode.replace(before, after as Theme));
         });
 
         localStorage.setItem('theme', after as Theme);
-        if (button) {
-            button.style.transform = (before === Theme.LIGHT) ? 'rotate(90deg)' : 'rotate(0deg)';
-        }
-
+        button.style.transform = (before === Theme.LIGHT) ? 'rotate(90deg)' : 'rotate(0deg)';
 
         return [after, before]; // Switch the themes every go around
     }
 
-    toggleOnLoad() {
-        this.toggle(this.oppositeTheme, this.startTheme); // On load, any classes with the old theme are changed based on localStorage || system preference
+    toggleOnLoad(button: HTMLElement) {
+        this.toggle(this.oppositeTheme, this.startTheme, button); // On load, any classes with the old theme are changed based on localStorage || system preference
 
     }
 
