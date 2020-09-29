@@ -9,11 +9,11 @@ type Toggle = (before: Theme, after: Theme, el: HTMLElement) => Theme[];
 
 // Classes
 export class Mode {
-    startTheme: Theme;
-    oppositeTheme: Theme;
-    storedTheme: Theme;
-    systemPreference: Theme;
-    availableThemes: readonly Theme[];
+    private startTheme: Theme;
+    private oppositeTheme: Theme;
+    private storedTheme: Theme;
+    private systemPreference: Theme;
+    private availableThemes: readonly Theme[];
 
     private static instance: Mode;
 
