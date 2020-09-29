@@ -10,12 +10,12 @@ type Toggle = (before: Theme, after: Theme, elem: HTMLElement) => Theme[];
 
 // Classes
 export class Mode {
-    public static systemPreference: Theme;
-    public static storedTheme: Theme;
-    public static startTheme: Theme;
-    public static oppositeTheme: Theme;
+    private static systemPreference: Theme;
+    private static storedTheme: Theme;
+    private static startTheme: Theme;
+    private static oppositeTheme: Theme;
 
-    private static init() {
+    private static findStartThemes() {
         this.systemPreference = window.matchMedia("(prefers-color-scheme: dark)").matches ? Theme.DARK : Theme.LIGHT;
         this.storedTheme = localStorage.getItem('theme') as Theme;
         this.startTheme = this.storedTheme || this.systemPreference;
@@ -35,14 +35,14 @@ export class Mode {
     }
 
     public static toggleOnLoad(button: HTMLElement) {
-        this.init();
+        this.findStartThemes();
         this.toggle(this.oppositeTheme, this.startTheme, button); // On load, any classes with the old theme are changed based on localStorage || system preference
 
     }
 
     public static toggleOnClick(button: HTMLElement) {
         if (!this.startTheme || !this.oppositeTheme) {
-            this.init();
+            this.findStartThemes();
         }
         [this.startTheme, this.oppositeTheme] = this.toggle(this.startTheme, this.oppositeTheme, button); // On click, any current theme is replaced with its opposite
     }
