@@ -41,7 +41,9 @@ export class Mode {
     }
 
     public static toggleOnClick(button: HTMLElement) {
-        this.init();
+        if (!this.startTheme || !this.oppositeTheme) {
+            this.init();
+        }
         [this.startTheme, this.oppositeTheme] = this.toggle(this.startTheme, this.oppositeTheme, button); // On click, any current theme is replaced with its opposite
     }
 }
